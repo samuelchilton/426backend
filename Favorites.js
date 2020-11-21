@@ -1,4 +1,4 @@
-const favoritesList = require('data-store')({path: ProcessingInstruction.cwd() + '/data/favoritesList.json'});
+const favoritesList = require('data-store')({path: process.cwd() + '/data/favoritesList.json'});
 
 class Favorites{
     constructor (id, owner, favorites){

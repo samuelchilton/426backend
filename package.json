@@ -4,6 +4,7 @@
   "description": "Backend for comp 426 final project",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,5 +22,8 @@
     "data-store": "^4.0.3",
     "express": "^4.17.1",
     "express-session": "^1.17.1"
+  },
+  "engines": {
+    "node": "12.18.3"
   }
 }

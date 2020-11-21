@@ -1,12 +1,10 @@
 const express = require('express');
-
 const app = express();
 
 const parser = require('body-parser');
 app.use(parser.json());
 
 const exressSession = require('express-session');
-
 app.use(exressSession({
     name: "SessionCookie",
     secret: 'quickbrownfox',
@@ -16,8 +14,8 @@ app.use(exressSession({
 
 const Favorite = require('./Favorites.js');
 
-const loginData = require('data-store')({path: ProcessingInstruction.cwd() + '/data/users.json'});
-
+const loginData = require('data-store')({path: process.cwd() + '/data/users.json'});
+console.log("running");
 app.post('/login', (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
