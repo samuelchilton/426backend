@@ -18,6 +18,7 @@ const loginData = require('data-store')({path: process.cwd() + '/data/users.json
 console.log("running");
 
 app.get('/test', (req, res) => {
+    console.log("inside test");
     res.json("Hello, world!");
 });
 
