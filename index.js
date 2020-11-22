@@ -13,7 +13,9 @@ app.use(exressSession({
     secret: 'quickbrownfox',
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: true },
+    cookie: {
+        sameSite: 'none',
+    },
 }));
 
 const Favorite = require('./Favorites.js');
