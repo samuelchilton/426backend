@@ -21,6 +21,11 @@ app.post('/test', (req, res) => {
     res.send("It worked...");
 });
 
+app.get('/test', (req, res) => {
+    console.log("inside test");
+    res.send("It worked...");
+});
+
 app.post('/login', (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
