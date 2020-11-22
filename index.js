@@ -15,6 +15,7 @@ app.use(exressSession({
 }));
 
 const Favorite = require('./Favorites.js');
+const User = require('./User.js');
 
 const loginData = require('data-store')({path: process.cwd() + '/data/users.json'});
 
@@ -27,6 +28,20 @@ app.get('/test', (req, res) => {
     console.log("inside test");
     res.send("It worked get...");
 });
+
+app.post('/singup', (req, res) => {
+    let user = req.body.user;
+    let password = req.body.password;
+
+    let existingUser = loginData.get(user);
+    if(existingUser !== undefined){
+        res.status(403).send("User already exists...");
+    }
+    let newUser = User.create(user, password);
+    console.log("New user named " + newUser.user + " with password " + newUser.password);
+    res.json(newUser);
+    return;
+})
 
 app.post('/login', (req, res) => {
     let user = req.body.user;
