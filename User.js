@@ -1,4 +1,4 @@
-const userList = require('data-store')({path: process.cwd() + '/data/userList.json'});
+const userList = require('data-store')({path: process.cwd() + '/data/users.json'});
 
 class User{
     constructor (user, password){
