@@ -17,9 +17,9 @@ const Favorite = require('./Favorites.js');
 const loginData = require('data-store')({path: process.cwd() + '/data/users.json'});
 console.log("running");
 
-app.get('/test', (req, res) => {
+app.post('/test', (req, res) => {
     console.log("inside test");
-    res.json("Hello, world!");
+    res.status(200).send("It worked...");
 });
 
 app.post('/login', (req, res) => {
