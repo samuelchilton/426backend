@@ -13,10 +13,8 @@ app.use(exressSession({
     secret: 'quickbrownfox',
     resave: false,
     saveUninitialized: false,
-    cookie: {
-        sameSite: 'strict',
-    },
 }));
+app.enable('trust proxy');
 
 const Favorite = require('./Favorites.js');
 const User = require('./User.js');
