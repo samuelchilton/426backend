@@ -39,10 +39,10 @@ app.post('/signup', (req, res) => {
         res.status(403).send("User already exists...");
     }
     //let newUser = User.create(user, password);
-    loginData.set(user.toString(), password);
+    loginData.set(user.toString(), {'user': user, 'password': password});
     res.json(loginData.get(user));
     return;
-})
+});
 
 app.post('/login', (req, res) => {
     let user = req.body.user;
