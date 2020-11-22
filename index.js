@@ -13,11 +13,11 @@ app.use(exressSession({
     name: "SessionCookie",
     secret: 'quickbrownfox',
     resave: false,
-    saveUninitialized: true,
-    proxy: true,
-    cookie:{
-        secure: true,
-    },
+    saveUninitialized: false,
+    // proxy: true,
+    // cookie:{
+    //     secure: true,
+    // },
 }));
 
 const Favorite = require('./Favorites.js');
