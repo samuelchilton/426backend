@@ -56,6 +56,7 @@ app.post('/login', (req, res) => {
     if(userData.password === password){
         console.log("User logged in...");
         req.session.user = user;
+        console.log("req.session.user = " + req.session.user);
         res.json(true);
         return;
     }
@@ -98,7 +99,7 @@ app.get('/favorite/:id', (req, res) => {
 });
 
 app.post('/favorite', (req, res) => {
-    console.log("User setting favore is " + req.session.user);
+    console.log("User setting favoret is " + req.session.user);
     if(req.session.user === undefined){
         res.status(403).send("Unauthorized...");
         return;
