@@ -3,7 +3,7 @@ const userList = require('data-store')({path: process.cwd() + '/data/userList.js
 class User{
     constructor (user, password){
         this.user = user;
-        this.password = password
+        this.password = password;
     }
     /**
      * Deletes the entire list for a given user. Should not be used unless
@@ -40,7 +40,8 @@ User.findUser = (user) => {
 
 User.create = (user, password) => {
     let u = new User(user, password);
-    userList.set(u.user, u);
+    console.log("User inside user.js is " + u.user);
+    userList.set(u.user.toString(), u);
     return u;
 }
 
