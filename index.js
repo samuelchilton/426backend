@@ -18,10 +18,8 @@ const loginData = require('data-store')({path: process.cwd() + '/data/users.json
 
 app.post('/test', (req, res) => {
     console.log("inside test");
-    res.status(200).send("It worked...");
+    res.send("It worked...");
 });
-
-console.log("beyond test endpoint");
 
 app.post('/login', (req, res) => {
     let user = req.body.user;
@@ -43,14 +41,10 @@ app.post('/login', (req, res) => {
     res.status(403).send("Unauthorized");
 });
 
-console.log("beyond post login endpoint");
-
 app.get('/logout', (req, res) => {
     delete req.session.user;
     res.json(true);
 });
-
-console.log("beyond get login endpoint");
 
 app.get('/favorite', (req, res) => {
     if(req.session.user === undefined){
@@ -61,8 +55,6 @@ app.get('/favorite', (req, res) => {
     res.json(Favorite.getAllIdsByOwner(req.session.user));
     return;
 });
-
-console.log("get favorite end point");
 
 app.get('/favorite/:id', (req, res) => {
     if(req.session.user === undefined){
@@ -83,8 +75,6 @@ app.get('/favorite/:id', (req, res) => {
     return;
 });
 
-console.log("get different favorite endpoint")
-
 app.post('/favorite', (req, res) => {
     if(req.session.user === undefined){
         res.status(403).send("Unauthorized...");
@@ -99,8 +89,6 @@ app.post('/favorite', (req, res) => {
     res.json(f);
     return;
 });
-
-console.log("post favorite endpoint")
 
 app.put('/favorite/:id', (req, res) => {
     if(req.session.user === undefined){
@@ -126,8 +114,6 @@ app.put('/favorite/:id', (req, res) => {
     return;
 });
 
-console.log("put favorite endpoint");
-
 app.delete('/favorite/:id', (req, res) => {
     if(req.session.user === undefined){
         res.status(403).send("Unauthorized...");
@@ -147,7 +133,5 @@ app.delete('/favorite/:id', (req, res) => {
     res.json(true);
     return;
 });
-
-console.log("delete favorite endpoint");
 
 app.listen(process.env.PORT || 3000, () => console.log("Server is running on port " + process.env.PORT + "..."));
