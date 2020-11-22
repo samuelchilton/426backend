@@ -98,6 +98,7 @@ app.get('/favorite/:id', (req, res) => {
 });
 
 app.post('/favorite', (req, res) => {
+    console.log("User setting favore is " + req.session.user);
     if(req.session.user === undefined){
         res.status(403).send("Unauthorized...");
         return;
