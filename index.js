@@ -21,7 +21,7 @@ app.post('/test', (req, res) => {
     console.log("inside test");
     res.status(200).send("It worked...");
 });
-
+console.log("beyond test endpoint");
 app.post('/login', (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
