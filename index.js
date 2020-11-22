@@ -8,16 +8,17 @@ app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }))
 
 const exressSession = require('express-session');
+app.enable('trust proxy');
 app.use(exressSession({
     name: "SessionCookie",
     secret: 'quickbrownfox',
     resave: false,
     saveUninitialized: false,
+    proxy: true,
     cookie:{
-        cookie: { secure: false },
+        secure: true,
     },
 }));
-app.enable('trust proxy');
 
 const Favorite = require('./Favorites.js');
 const User = require('./User.js');
