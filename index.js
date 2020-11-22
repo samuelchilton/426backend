@@ -13,7 +13,7 @@ app.use(exressSession({
     name: "SessionCookie",
     secret: 'quickbrownfox',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     proxy: true,
     cookie:{
         secure: true,
