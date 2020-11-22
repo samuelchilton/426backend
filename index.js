@@ -5,6 +5,7 @@ const cors = require('cors');
 const parser = require('body-parser');
 app.use(cors());
 app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }))
 
 const exressSession = require('express-session');
 app.use(exressSession({
@@ -36,11 +37,10 @@ app.post('/signup', (req, res) => {
 
     let existingUser = loginData.get(user);
     if(existingUser !== undefined){
-        console.log("Exists...");
+    console.log("New user named " + newUser.user + " with password " + newUser.password);
         res.status(403).send("User already exists...");
     }
     let newUser = User.create(user, password);
-    console.log("New user named " + newUser.user + " with password " + newUser.password);
     res.json(newUser);
     return;
 })
