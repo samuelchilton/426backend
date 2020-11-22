@@ -49,10 +49,10 @@ Favorites.nextID = Favorites.getAllIDs().reduce((max, nextID) => {
     return max;
 }, -1) + 1;
 
-Favorites.create = (owner, secret) => {
+Favorites.create = (owner, drinkName) => {
     let id = Favorites.nextID;
     Favorites.nextID += 1;
-    let f = new Favorites(id, owner, secret);
+    let f = new Favorites(id, owner, drinkName);
     favoritesList.set(f.id.toString(), f);
     return f;
 }

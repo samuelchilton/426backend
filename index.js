@@ -38,7 +38,6 @@ app.post('/signup', (req, res) => {
     if(existingUser !== undefined){
         res.status(403).send("User already exists...");
     }
-    //let newUser = User.create(user, password);
     loginData.set(user.toString(), {'user': user, 'password': password});
     res.json(loginData.get(user));
     return;
@@ -48,10 +47,7 @@ app.post('/login', (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
 
-    console.log(user + " is the user");
-
     let userData = loginData.get(user);
-    console.log(userData + " is user data");
     if(userData == null){
         res.status(404).send("Not found...");
         return;
@@ -107,7 +103,8 @@ app.post('/favorite', (req, res) => {
         return;
     }
 
-    let f = Favorite.create(req.session.user, req.body.secret);
+    let f = Favorite.create(req.session.user, req.body.drinkName);
+    console.log(Favorite.findByID(0) + " is the first favorite for the user");
     if(f == null){
         res.status(400).send("Bad request...");
         return;
