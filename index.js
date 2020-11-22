@@ -38,7 +38,8 @@ app.post('/signup', (req, res) => {
     if(existingUser !== undefined){
         res.status(403).send("User already exists...");
     }
-    let newUser = User.create(user, password);
+    //let newUser = User.create(user, password);
+    loginData.set(user.toString(), password);
     res.json(newUser);
     return;
 })
