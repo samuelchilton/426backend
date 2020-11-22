@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const parser = require('body-parser');
+app.use(allowCrossDomain)
 app.use(parser.json());
 
 const exressSession = require('express-session');
@@ -18,12 +19,12 @@ const loginData = require('data-store')({path: process.cwd() + '/data/users.json
 
 app.post('/test', (req, res) => {
     console.log("inside test");
-    res.send("It worked...");
+    res.send("It worked for post...");
 });
 
 app.get('/test', (req, res) => {
     console.log("inside test");
-    res.send("It worked...");
+    res.send("It worked get...");
 });
 
 app.post('/login', (req, res) => {
