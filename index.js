@@ -40,7 +40,7 @@ app.post('/signup', (req, res) => {
     }
     //let newUser = User.create(user, password);
     loginData.set(user.toString(), password);
-    res.json(newUser);
+    res.json(loginData.get(user));
     return;
 })
 
