@@ -15,7 +15,6 @@ app.use(exressSession({
 const Favorite = require('./Favorites.js');
 
 const loginData = require('data-store')({path: process.cwd() + '/data/users.json'});
-console.log("running");
 
 app.post('/test', (req, res) => {
     console.log("inside test");
@@ -92,12 +91,13 @@ app.post('/favorite', (req, res) => {
         return;
     }
 
-    let f = Sec.create(req.session.user, req.body.secret);
+    let f = Favorite.create(req.session.user, req.body.secret);
     if(f == null){
         res.status(400).send("Bad request...");
         return;
     }
-    return res.json(f);
+    res.json(f);
+    return;
 });
 
 console.log("post favorite endpoint")
@@ -149,3 +149,5 @@ app.delete('/favorite/:id', (req, res) => {
 });
 
 console.log("delete favorite endpoint");
+
+app.listen(process.env.PORT || 3000, () => console.log("Server is running on port " + process.env.PORT + "..."));
