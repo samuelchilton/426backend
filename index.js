@@ -13,6 +13,9 @@ app.use(exressSession({
     secret: 'quickbrownfox',
     resave: false,
     saveUninitialized: false,
+    cookie:{
+        cookie: { secure: false },
+    },
 }));
 app.enable('trust proxy');
 
