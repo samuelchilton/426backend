@@ -29,12 +29,13 @@ app.get('/test', (req, res) => {
     res.send("It worked get...");
 });
 
-app.post('/singup', (req, res) => {
+app.post('/signup', (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
 
     let existingUser = loginData.get(user);
     if(existingUser !== undefined){
+        console.log("Exists...");
         res.status(403).send("User already exists...");
     }
     let newUser = User.create(user, password);

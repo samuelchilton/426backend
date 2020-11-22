@@ -39,6 +39,7 @@ User.findUser = (user) => {
 // }, -1) + 1;
 
 User.create = (user, password) => {
+    console.log("User: " + user + " Password: " + password);
     let u = new User(user, password);
     console.log("User inside user.js is " + u.user);
     userList.set(u.user.toString(), u);
