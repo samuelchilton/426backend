@@ -33,11 +33,9 @@ app.get('/test', (req, res) => {
 app.post('/signup', (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
-    //console.log(req);
 
     let existingUser = loginData.get(user);
     if(existingUser !== undefined){
-    console.log("New user named " + newUser.user + " with password " + newUser.password);
         res.status(403).send("User already exists...");
     }
     let newUser = User.create(user, password);
@@ -49,7 +47,10 @@ app.post('/login', (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
 
+    console.log(user + " is the user");
+
     let userData = loginData.get(user);
+    console.log(userData + " is user data");
     if(userData == null){
         res.status(404).send("Not found...");
         return;
