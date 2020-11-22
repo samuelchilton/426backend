@@ -14,7 +14,7 @@ app.use(exressSession({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        sameSite: 'none',
+        sameSite: 'strict',
     },
 }));
 
