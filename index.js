@@ -6,7 +6,7 @@ const parser = require('body-parser');
 
 //app.use(cors());
 const corsOptions = {
-    origin: 'https://annbantukul.github.io/',
+    origin: 'https://annbantukul.github.io',
     credentials: true,
 };
 app.use(cors(corsOptions));
