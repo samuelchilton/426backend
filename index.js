@@ -20,6 +20,11 @@ app.use(exressSession({
     // },
 }));
 
+const corsOptions = {
+    origin: 'http://example.com',
+    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
 const Favorite = require('./Favorites.js');
 const User = require('./User.js');
 
@@ -35,7 +40,7 @@ app.get('/test', (req, res) => {
     res.send("It worked get...");
 });
 
-app.post('/signup', (req, res) => {
+app.post('/signup', cors(corsOptions), (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
 
@@ -48,7 +53,7 @@ app.post('/signup', (req, res) => {
     return;
 });
 
-app.post('/login', (req, res) => {
+app.post('/login', cors(corsOptions), (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
 
@@ -103,7 +108,7 @@ app.get('/favorite/:id', (req, res) => {
     return;
 });
 
-app.post('/favorite', (req, res) => {
+app.post('/favorite', cors(corsOptions), (req, res) => {
     console.log("User setting favoret is " + req.session.user);
     if(req.session.user === undefined){
         res.status(403).send("Unauthorized...");
