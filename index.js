@@ -6,9 +6,13 @@ const parser = require('body-parser');
 app.use(cors());
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }))
-
+const corsOptions = {
+    origin: 'https://annbantukul.github.io/',
+    optionsSuccessStatus: 200,
+    credentials: true,
+};
 const exressSession = require('express-session');
-app.enable('trust proxy');
+app.use(cors(corsOptions));
 app.use(exressSession({
     name: "SessionCookie",
     secret: 'quickbrownfox',
@@ -20,10 +24,7 @@ app.use(exressSession({
     // },
 }));
 
-const corsOptions = {
-    origin: 'https://annbantukul.github.io/',
-    optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
+
 
 const Favorite = require('./Favorites.js');
 const User = require('./User.js');
@@ -40,7 +41,7 @@ app.get('/test', (req, res) => {
     res.send("It worked get...");
 });
 
-app.post('/signup', cors(corsOptions), (req, res) => {
+app.post('/signup', (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
 
@@ -53,7 +54,7 @@ app.post('/signup', cors(corsOptions), (req, res) => {
     return;
 });
 
-app.post('/login', cors(corsOptions), (req, res) => {
+app.post('/login', (req, res) => {
     let user = req.body.user;
     let password = req.body.password;
 
@@ -108,7 +109,7 @@ app.get('/favorite/:id', (req, res) => {
     return;
 });
 
-app.post('/favorite', cors(corsOptions), (req, res) => {
+app.post('/favorite', (req, res) => {
     console.log("User setting favoret is " + req.session.user);
     if(req.session.user === undefined){
         res.status(403).send("Unauthorized...");
