@@ -51,6 +51,7 @@ app.post('/signup', (req, res) => {
     }
     loginData.set(user.toString(), {'user': user, 'password': password});
     res.json(loginData.get(user));
+    console.log("user signed up with username " + user + " and password " + password);
     return;
 });
 
@@ -70,6 +71,7 @@ app.post('/login', (req, res) => {
         res.json(true);
         return;
     }
+    console.log("user signed in with username" + user + " and password " + password); 
 
     res.status(403).send("Unauthorized");
 });
