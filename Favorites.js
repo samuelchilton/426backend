@@ -36,9 +36,10 @@ Favorites.getAllIdsByOwner = (owner) => {
 }
 
 Favorites.findByID = (id) => {
-    let data = favoritesList.get(id);
+    let data = favoritesList.get(id.toString());
     if(data != null) {
-        return new Favorites(data.id, data.owner, data.secret);
+
+        return new Favorites(data.id, data.owner, data.favorites);
     }
 }
 

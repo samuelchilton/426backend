@@ -4,10 +4,10 @@ const cors = require('cors');
 
 const parser = require('body-parser');
 
-app.use(cors());
+//app.use(cors());
 const corsOptions = {
-    origin: 'https://annbantukul.github.io/Comp426',
-    optionsSuccessStatus: 200,
+    origin: 'https://annbantukul.github.io/Comp426/',
+    //optionsSuccessStatus: 200,
     credentials: true,
 };
 app.use(cors(corsOptions));
@@ -26,19 +26,15 @@ app.use(parser.urlencoded({ extended: true }))
 
 
 const Favorite = require('./Favorites.js');
-const User = require('./User.js');
 
 const loginData = require('data-store')({path: process.cwd() + '/data/users.json'});
 
 app.post('/test', (req, res) => {
-    console.log("inside test");
-    res.send("It worked for post...");
+    console.log("hi");
+    res.json("hey");
+    return;
 });
 
-app.get('/test', (req, res) => {
-    console.log("inside test");
-    res.send("It worked get...");
-});
 
 app.post('/signup', (req, res) => {
     let user = req.body.user;
@@ -66,7 +62,6 @@ app.post('/login', (req, res) => {
     if(userData.password === password){
         console.log("User logged in...");
         req.session.user = user;
-        console.log("req.session.user = " + req.session.user);
         res.json(true);
         return;
     }
@@ -80,6 +75,7 @@ app.get('/logout', (req, res) => {
 });
 
 app.get('/favorite', (req, res) => {
+    console.log(req.session.user);
     if(req.session.user === undefined){
         res.status(403).send("Unauthorized...");
         return;
@@ -109,14 +105,14 @@ app.get('/favorite/:id', (req, res) => {
 });
 
 app.post('/favorite', (req, res) => {
-    console.log("User setting favoret is " + req.session.user);
+    console.log("User setting favorite is " + req.session.user);
     if(req.session.user === undefined){
-        res.status(403).send("Unauthorized...");
+        res.status(403).send("Unauthorized because req.session.user is undefined...");
         return;
     }
 
-    let f = Favorite.create(req.session.user, req.body.drinkName);
-    console.log(Favorite.findByID(0) + " is the first favorite for the user");
+    let f = Favorite.create(req.session.user.toString(), req.body.drinkName);
+    console.log(Favorite.findByID(0).favorites + " is the first favorite for the user");
     if(f == null){
         res.status(400).send("Bad request...");
         return;
@@ -168,5 +164,8 @@ app.delete('/favorite/:id', (req, res) => {
     res.json(true);
     return;
 });
-
-app.listen(process.env.PORT || 3000, () => console.log("Server is running on port " + process.env.PORT + "..."));
+const port = 3030;
+app.listen(port, () => {
+    console.log("User Login Example up and running on port " + port);
+});
+//app.listen(process.env.PORT || 3000, () => console.log("Server is running on port " + process.env.PORT + "..."));
