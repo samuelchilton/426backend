@@ -20,7 +20,8 @@ app.use(exressSession({
     proxy : true, // add this when behind a reverse proxy, if you need secure cookies
     cookie : {
         secure : true, // disable for localhost testing because it isn't secure
-        maxAge: 5184000000 // 2 months but set to whatever floats your boat
+        maxAge: 5184000000, // 2 months but set to whatever floats your boat
+        sameSite: "none",
     }
 }));
 
