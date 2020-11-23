@@ -69,10 +69,10 @@ app.post('/login', (req, res) => {
         console.log("User logged in...");
         req.session.user = user;
         res.json(true);
+        console.log("user signed in with username" + user + " and password " + password); 
+        
         return;
     }
-    console.log("user signed in with username" + user + " and password " + password); 
-
     res.status(403).send("Unauthorized");
 });
 
