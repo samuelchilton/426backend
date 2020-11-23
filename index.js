@@ -164,8 +164,8 @@ app.delete('/favorite/:id', (req, res) => {
     res.json(true);
     return;
 });
-const port = 3030;
-app.listen(port, () => {
-    console.log("User Login Example up and running on port " + port);
-});
-//app.listen(process.env.PORT || 3000, () => console.log("Server is running on port " + process.env.PORT + "..."));
+// const port = 3030;
+// app.listen(port, () => {
+//     console.log("User Login Example up and running on port " + port);
+// });
+app.listen(process.env.PORT || 3000, () => console.log("Server is running on port " + process.env.PORT + "..."));
