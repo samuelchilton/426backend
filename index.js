@@ -3,27 +3,26 @@ const app = express();
 const cors = require('cors');
 
 const parser = require('body-parser');
+
 app.use(cors());
-app.use(parser.json());
-app.use(parser.urlencoded({ extended: true }))
 const corsOptions = {
-    origin: 'https://annbantukul.github.io/',
+    origin: 'https://annbantukul.github.io/Comp426',
     optionsSuccessStatus: 200,
     credentials: true,
 };
-const exressSession = require('express-session');
 app.use(cors(corsOptions));
+
+const exressSession = require('express-session');
 app.use(exressSession({
     name: "SessionCookie",
     secret: 'quickbrownfox',
     resave: false,
     saveUninitialized: false,
-    // proxy: true,
-    // cookie:{
-    //     secure: true,
-    // },
 }));
 
+
+app.use(parser.json());
+app.use(parser.urlencoded({ extended: true }))
 
 
 const Favorite = require('./Favorites.js');
