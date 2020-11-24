@@ -165,7 +165,7 @@ app.delete('/favorite/:id', (req, res) => {
         return;
     }
 
-    if(f.owner != req.session.owner){
+    if(f.owner != req.session.user){
         res.status(403).send("Unauthorized...");
         console.log("f.owner does not equal req.session.user");
         return;
