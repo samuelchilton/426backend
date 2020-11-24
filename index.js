@@ -155,16 +155,19 @@ app.put('/favorite/:id', (req, res) => {
 app.delete('/favorite/:id', (req, res) => {
     if(req.session.user === undefined){
         res.status(403).send("Unauthorized...");
+        console.log("req.session.user is undefined");
         return;
     }
 
     let f = Favorite.findByID(req.params.id);
     if(f == null){
         res.status(404).send("Not found...");
+        return;
     }
 
     if(f.owner != req.session.owner){
         res.status(403).send("Unauthorized...");
+        console.log("f.owner does not equal req.session.user");
         return;
     }
     f.delete();
